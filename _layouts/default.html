@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="google-signin-client_id" content="569837790193-dg662hms0himqt2k10i95vqc2oirgnqd.apps.googleusercontent.com">
+
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen">
+    <link rel="stylesheet" href="{{ '/assets/css/mobile.css' | relative_url }}" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="{{ '/assets/css/non-screen.css' | relative_url }}" media="handheld, only screen and (max-device-width:640px)">
+
+    <script type="text/javascript" src="{{ '/assets/js/modernizr.js' | relative_url }}"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ '/assets/js/headsmart.min.js' | relative_url }}"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
+    <script type="text/javascript" src="{{ '/assets/js/bundle.js' | relative_url }}"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+
+    {% seo %}
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="{{ site.github.repository_url }}">View on GitHub</a>
+    <div class="shell">
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>{{ site.title }}</h1>
+            <h2>{{ site.description }}</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads"><!--div id="no-downloads"-->
+        <span class="inner">
+          <a href="#" class="zip"><em></em></a>
+          <a href="#" class="tgz"><em></em></a>
+        </span>
+      </section>
+
+      <span class="banner-fix"></span>
+
+      <section id="main_content">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        {{ content }}
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>project by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+    </div>
+
+    {% if site.google_analytics %}
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', '{{ site.google_analytics }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {% endif %}
+  </body>
+</html>

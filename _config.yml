@@ -1,2 +1,10 @@
 theme: jekyll-theme-merlot
 title: Marching West
+description: Una experiencia RPG masiva
+exclude:
+  - 'Gemfile*'
+  - 'node_modules'
+  - 'package*.json'
+  - 'webpack.config.js'
+  - '_src'
+

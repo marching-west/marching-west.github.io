@@ -1,0 +1,27 @@
+{
+  "name": "marching-west.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "_src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marching-west/marching-west.github.io.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "homepage": "https://github.com/marching-west/marching-west.github.io#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.217.1"
+  }
+}
