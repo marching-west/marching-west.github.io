@@ -4,6 +4,8 @@
   "description": "",
   "main": "_src/main.js",
   "scripts": {
+    "build": "webpack",
+    "serve": "bundle exec jekyll serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +23,5 @@
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13"
   },
-  "dependencies": {
-    "aws-sdk": "^2.217.1"
-  }
+  "dependencies": {}
 }
