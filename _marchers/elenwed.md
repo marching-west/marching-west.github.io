@@ -4,7 +4,7 @@ label: elenwed
 name: Elenwed
 catchphrase: 'explorador elfo'
 role: 'pegador'
-complexity: 3
+complexity: 2
 ---
 
 Elenwed y sus dos espadas forman un torbellino imparable en el campo de batalla.

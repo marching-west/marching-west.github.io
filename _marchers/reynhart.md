@@ -4,7 +4,7 @@ label: reynhart
 name: Reynhart
 catchphrase: ''
 role: 'pegador'
-complexity: 0
+complexity: 2
 ---
 
 (EN DESARROLLO)

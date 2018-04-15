@@ -4,7 +4,7 @@ label: bob
 name: Bob
 catchphrase: 'pícaro mediano'
 role: 'pegador'
-complexity: 5
+complexity: 3
 ---
 
 El escurridizo Bob dispone de una gran versatilidad en el campo de batalla.

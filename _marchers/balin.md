@@ -4,7 +4,7 @@ label: balin
 name: Balin
 catchphrase: ''
 role: 'líder'
-complexity: 3
+complexity: 2
 ---
 
 El antiguo proverbio enano "a Moradin rezando y con el mazo dando" describe a Balin a la perfección.
