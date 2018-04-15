@@ -7,4 +7,6 @@ role: 'pegador'
 complexity: 5
 ---
 
-El silencioso y escurridizo Bob se desplaza imparable, como un reguero de pólvora, entre sus enemigos. Su agilidad le permite flanquear e incluso saltar por encima de sus enemigos. Y una vez a su espalda...
+El escurridizo Bob dispone de una gran versatilidad en el campo de batalla.
+Se siente cómodo a cualquier distancia, ya sea acuchillando con su espada corta u hostigando a distancia con sus dagas arrojadizas.
+Su gran agilidad le permite flanquear e incluso saltar por encima de sus enemigos, colocándose a su espalda.

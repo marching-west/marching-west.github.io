@@ -7,4 +7,6 @@ role: 'defensora'
 complexity: 1
 ---
 
-La pétrea Dwall mantiene a raya a los rivales y concede amparo a sus compañeros malheridos. No la tomes a la ligera, su poderoso martillo del risco hará temblar (literalmente) a cualquier rival...
+La pétrea Dwall mantiene a raya a los rivales y concede amparo a sus compañeros malheridos.
+La mayoría de sus poderes se centran en incapacitar, provocar o mover a sus rivales, pero un ataque básico con poderoso
+martillo del risco no es algo a ignorar.

@@ -3,7 +3,8 @@ layout: marcher
 label: reynhart
 name: Reynhart
 catchphrase: ''
-role: ''
+role: 'pegador'
 complexity: 0
 ---
 
+(EN DESARROLLO)

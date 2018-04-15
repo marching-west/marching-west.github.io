@@ -2,8 +2,8 @@
 layout: marcher
 label: hood
 name: Hood
-catchphrase: ''
-role: ''
-complexity: 0
+catchphrase: 'warlord dracónico'
+role: 'líder'
+complexity: 5
 ---
 
