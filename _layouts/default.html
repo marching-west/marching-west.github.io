@@ -16,13 +16,13 @@
           href="{{ '/assets/css/non-screen.css' | relative_url }}"
           media="handheld, only screen and (max-device-width:640px)">
 
-    <script type="text/javascript" src="{{ '/assets/js/modernizr.js' | relative_url }}"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ '/assets/js/headsmart.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/modernizr.js' | relative_url }}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="{{ '/assets/js/headsmart.min.js' | relative_url }}"></script>
     <!-- script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script-->
     <!-- script type="text/javascript" src="{{ '/assets/js/bundle.js' | relative_url }}"></script-->
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
-    <script type="text/javascript">
+    <script>
       $(document).ready(function () {
         $('#main_content').headsmart()
       })
@@ -62,7 +62,7 @@
           <span class="left-tail"></span>
           <span class="right-tail"></span>
         </span>
-        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> based in the Merlot theme</p>
         <span class="octocat"></span>
       </footer>
     </div>

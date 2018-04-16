@@ -1,13 +1,9 @@
 ---
-layout: default
+layout: page
 ---
 {% capture page_title %}
 {{ page.name }}{% if page.catchphrase and page.catchphrase != empty %}, {{ page.catchphrase }}{% endif %}
 {% endcapture %}
-
-<div style="margin-bottom: 15px;">
-  <a href="{{ '/' | relative_url }}"><span class="fas fa-arrow-left"></span> Volver a la página principal</a>
-</div>
 
 <div id="marchers-navigation"
      style="display: flex; align-items: center; justify-content: space-evenly; margin-bottom: 10px">
@@ -53,13 +49,11 @@ layout: default
     {% when 3 %} Media
     {% when 4 %} Media-alta
     {% when 5 %} Alta
-    {% else %} <i>No evaluada</i>
+    {% else %} -
     {% endcase %}
   </dd>
 </dl>
 
 {{ content }}
-
-<hr>
 
 <script type="text/javascript" src="{{ 'assets/js/navigator.js' | relative_url }}"></script>
