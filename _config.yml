@@ -4,7 +4,7 @@ collections:
   marchers:
     output: true
   challenges:
-    output: true
+    output: false
 exclude:
   - 'Gemfile*'
   - 'node_modules'

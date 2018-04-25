@@ -11,4 +11,4 @@ Puedes acompañarnos durante nuestra aventura en esta fase _beta_ todos los **do
 Más información:
 
 * [Nuestros héroes, los _Marchers_]({{ '/marchers/dwall.html' | relative_url }})
-* [Desafíos disponibles]({{ '/challenges/alzamiento-de-calaveras.html' | relative_url }})
+* [Desafíos disponibles]({{ '/challenges/' | relative_url }})

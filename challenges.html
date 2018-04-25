@@ -1,0 +1,14 @@
+---
+layout: page
+permalink: /challenges/index.html
+---
+
+<h1>Desafíos</h1>
+
+{% for challenge in site.challenges %}
+<!--a href="{{ challenge.url | relative_url }}"-->
+  <img src="{{ 'assets/images/challenges/' | append: challenge.banner | relative_url }}"
+       title="El Alzamiento del Señor de Calaveras"
+       style="margin: 0 auto; display: block;">
+<!--/a-->
+{% endfor %}
