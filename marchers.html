@@ -1,0 +1,15 @@
+---
+layout: page
+permalink: /marchers/index.html
+---
+
+<h1>Marchers</h1>
+
+<p>Al comienzo de la partida cada jugador deberá elegir con cuál de los legendarios héroes conocidos como <em>los Marchers</em> afrontará el desafío.</p>
+<p>Cada marcher es una experiencia única y aportará algo diferente, puedes pulsar en la imagen de un marcher para consultar su complejidad y el rol que cumple en combate, así como una pequeña descripción de su filosofía de juego. Poco a poco iremos actualizando el perfil de cada uno para incluir también una descripción detallada de sus habilidades.</p>
+
+<div style="max-width: 420px; margin: 20px auto 10px; display: flex; flex-flow: row wrap;">
+{% for marcher in site.marchers %}
+{% include marcher-avatar.html data=marcher %}
+{% endfor %}
+</div>

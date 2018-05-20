@@ -1,42 +1,38 @@
 ---
-layout: default
+layout: page
 ---
 {% capture page_title %}
 {{ page.name }}{% if page.catchphrase and page.catchphrase != empty %}, {{ page.catchphrase }}{% endif %}
 {% endcapture %}
 
-<div style="margin-bottom: 15px;">
-  <a href="{{ '/' | relative_url }}"><span class="fas fa-arrow-left"></span> Volver a la página principal</a>
-</div>
-
 <div id="marchers-navigation"
      style="display: flex; align-items: center; justify-content: space-evenly; margin-bottom: 10px">
   <div id="marchers-navigation-prev"
        style="width: 8%; cursor: pointer;">
-    <img src="{{ 'assets/img/arrow-left.png' | relative_url }}"
-         style="width: 100%; border: 0; box-shadow: none; -webkit-box-shadow: none;">
+    <img src="{{ 'assets/images/arrow-left.png' | relative_url }}"
+         style="width: 100%">
   </div>
   {% for marcher in site.marchers %}
   <div class="{% if marcher.label == page.label %}active{% endif %}"
        title="{{ marcher.name }}"
        style="width: 15%">
     <a href="{{ marcher.url | relative_url }}">
-      <img src="{{ 'assets/img/marchers/avatar-' | append: marcher.label | append: '.png' | relative_url }}"
+      <img src="{{ 'assets/images/marchers/avatar-' | append: marcher.label | append: '.png' | relative_url }}"
            alt="{{ marcher.name }}"
-           style="width: 100%; border: 0; box-shadow: none; -webkit-box-shadow: none;">
+           style="width: 100%">
     </a>
   </div>
   {% endfor %}
   <div id="marchers-navigation-next"
        style="width: 8%; cursor: pointer;">
-    <img src="{{ 'assets/img/arrow-right.png' | relative_url }}"
-         style="width: 100%; border: 0; box-shadow: none; -webkit-box-shadow: none;">
+    <img src="{{ 'assets/images/arrow-right.png' | relative_url }}"
+         style="width: 100%">
   </div>
 </div>
 
 <hr>
 
-<img src="{{ 'assets/img/marchers/avatar-' | append: page.label | append: '.png' | relative_url }}">
+<img src="{{ 'assets/images/marchers/avatar-' | append: page.label | append: '.png' | relative_url }}" style="width: 100%">
 
 <h1>{{ page_title }}</h1>
 
@@ -53,13 +49,11 @@ layout: default
     {% when 3 %} Media
     {% when 4 %} Media-alta
     {% when 5 %} Alta
-    {% else %} <i>No evaluada</i>
+    {% else %} -
     {% endcase %}
   </dd>
 </dl>
 
 {{ content }}
-
-<hr>
 
 <script type="text/javascript" src="{{ 'assets/js/navigator.js' | relative_url }}"></script>
