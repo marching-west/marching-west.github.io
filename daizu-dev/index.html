@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="google-signin-client_id"
+          content="569837790193-dg662hms0himqt2k10i95vqc2oirgnqd.apps.googleusercontent.com">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
+
+    <style>
+        @font-face {
+            font-family: MySketch;
+            src: local("MySketch"),
+            local("MySketch"),
+            url('assets/Sketch Gothic School.ttf');
+            font-weight: bold;
+        }
+
+        .grid {
+            width: 100%;
+        }
+
+        .ui.card {
+            padding: 5px;
+            background: rgba(0, 0, 0, 0.0);
+            height: 100%;
+            /*border: 3px solid black;*/
+            box-shadow: none;
+        }
+
+        .ui.card h3 {
+            /*font-family: MySketch,serif;*/
+            font-size: 1.4rem;
+        }
+
+        .ui.card .image {
+            color: #A9B7C6;
+            background: rgba(0, 0, 0, 0.0);
+            box-shadow: none;
+        }
+
+        .ui.card > .content {
+            border-width: 0px;
+        }
+
+        .ui.card .content .meta {
+            font-size: 1.4rem;
+        }
+
+        .ui.card .content .header {
+            font-size: 2rem;
+        }
+
+        .ui.card .health-icon {
+            width: 30%;
+        }
+
+        .player-card .image-section {
+            max-height: 100%;
+            display: flex;
+        }
+
+        .player-card.left-player .image-section {
+            justify-content: flex-end;
+        }
+
+        .player-card.right-player .image-section {
+            justify-content: flex-start
+        }
+
+        .shrine {
+            filter: grayscale(100%);
+            -webkit-transition: -webkit-filter 500ms ease-in;
+        }
+
+        .shrine.active {
+            filter: grayscale(0%);
+            -webkit-transition: -webkit-filter 500ms ease-out;
+        }
+
+        .ice.skeleton-lord .card .image {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            /*filter: FlipH;*/
+            -ms-filter: "FlipH";
+        }
+
+        .health-icon {
+            display: block !important;
+        }
+
+        .half-health-icon {
+            display: none !important;
+
+        }
+
+        .bloodied .health-icon {
+            display: none !important;
+        }
+
+        .bloodied .half-health-icon {
+            display: block !important;
+        }
+
+        .character-name {
+            font-size: 3rem !important;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .character-descriptor {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .player-name {
+            font-size: 2rem !important;
+        }
+
+        .action-point.spent {
+            display: none !important;
+        }
+
+        .action-point.spent + .action-point-descriptor {
+            display: none !important;
+        }
+
+        .player-name-wrapper {
+            display: flex !important;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+
+<body style=" background: #ece4d8">
+<div class="ui container" style="width:1920px; background: #ece4d8">
+    <div class="ui three column grid" style="height: 100vh; width:1920px;">
+
+        <div class="row" style="height: 40vh;">
+            <div class="ui columns grid" style="display: flex; align-items: center;">
+                <div class="eight wide column  fire skeleton-lord" style="max-height: 100%;">
+                    <div class="ui grid">
+                        <div class="six wide column" style="display: flex; justify-content: center; ">
+                            <img class="ui image fire shrine" src="assets/icons/fire.png"
+                                 style="height: 300px; align-self: center">
+                        </div>
+                        <div class="five wide column"
+                             style="justify-content: space-around;display: flex; flex-direction: column">
+                            <img class="ui image health-icon" src="assets/icons/heart.png"
+                                 style="height: 150px; align-self: center">
+                            <img class="ui image half-health-icon" src="assets/icons/bloodied.png"
+                                 style="height: 150px; align-self: center">
+                            <span class="health"
+                                  style="font-size: 6rem; padding: 1rem; justify-content: center; text-align: center">-</span>
+                        </div>
+                        <div class="five wide column" style="justify-content: flex-end;display: flex;">
+
+                            <div class="ui card" style="max-height: 100%">
+                                <div class="image">
+                                    <img src="../assets/img/fire.png">
+                                </div>
+                                <div class="content" style="align-self: center">
+                                    <span class="header character-name">Señor de Fuego</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="eight wide column ice skeleton-lord" style="max-height: 100%;">
+                    <div class="ui grid">
+                        <div class="five wide column" style="justify-content: flex-end;display: flex;">
+                            <div class="ui card" style="max-height: 100%">
+                                <div class="image">
+                                    <img src="../assets/img/ice.png">
+                                </div>
+                                <div class="content" style="align-self: center">
+                                    <span class="header character-name">Señor de Hielo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide column"
+                             style="justify-content: space-around;display: flex; flex-direction: column">
+                            <img class="ui image health-icon" src="assets/icons/heart.png"
+                                 style="height: 150px; align-self: center">
+                            <img class="ui image half-health-icon" src="assets/icons/bloodied.png"
+                                 style="height: 150px; align-self: center">
+                            <span class="health"
+                                  style="font-size: 6rem; padding: 1rem; justify-content: center; text-align: center">35</span>
+                        </div>
+                        <div class="six wide column" style="display: flex; justify-content: center;">
+                            <img class="ui image ice shrine" src="assets/icons/snow.png"
+                                 style="height: 300px; align-self: center">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height: 15vh;">
+            <div class="ui grid">
+                <div class="five wide column"></div>
+                <div class="six wide column" style="display: flex; justify-content: center">
+                    <img class="ui image" src="assets/logo.png" style="height: 13vh">
+                </div>
+                <div class="five wide column"></div>
+            </div>
+        </div>
+        <div class="row" style="height: 40vh;">
+            <div class="ui columns grid">
+                <div class="ui eight wide column player-card left-player">
+                    <div class="ui columns grid">
+                        <div class="five wide column"
+                             style="justify-content: space-around;display: flex; flex-direction: column">
+                            <img class="ui image action-point" src="assets/icons/action_point.png"
+                                 style="height: 150px; align-self: center">
+                            <span class="action-point-descriptor"
+                                  style="font-size: 2rem; padding: 1rem; justify-content: center; text-align: center">Punto de accion</span>
+                        </div>
+                        <div class="four wide column"
+                             style="justify-content: space-around;display: flex; flex-direction: column">
+                            <img class="ui image health-icon" src="assets/icons/heart.png"
+                                 style="height: 150px; align-self: center">
+                            <img class="ui image half-health-icon" src="assets/icons/bloodied.png"
+                                 style="height: 150px; align-self: center">
+                            <span class="health"
+                                  style="font-size: 6rem; padding: 1rem; justify-content: center; text-align: center">35</span>
+                        </div>
+                        <div class="seven wide column"
+                             style="max-height: 100%; display: flex; justify-content: flex-end">
+
+                            <div class="ui card" style="height: 100%;">
+                                <div class="marcher-title" style="margin-bottom: 10px">
+                                    <h3 class="character-name" style="text-align: center;">??</h3>
+                                    <div class="character-descriptor">
+                                        <span>????</span>
+                                    </div>
+                                </div>
+                                <div class="image">
+                                    <img class="avatar-image" src="../assets/img/marchers/avatar-notashe.png">
+                                </div>
+                                <div class="content">
+                                    <div class="player-name-wrapper header"><i
+                                            class="ui icon blue square twitter big"></i>
+                                        <span class="player-name">player1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui eight wide column player-card right-player">
+                    <div class="ui columns grid">
+                        <div class="seven wide column"
+                             style="max-height: 100%; display: flex; justify-content: flex-start">
+
+                            <div class="ui card" style="height: 100%;">
+                                <div class="marcher-title" style="margin-bottom: 10px">
+                                    <h3 class="character-name" style="text-align: center;">??</h3>
+                                    <div class="character-descriptor">
+                                        <span>??????</span>
+                                    </div>
+                                </div>
+                                <div class="image">
+                                    <img class="avatar-image" src="../assets/img/marchers/avatar-lepis.png">
+                                </div>
+                                <div class="content">
+                                    <div class="player-name-wrapper header"><i
+                                            class="ui icon blue square twitter big"></i>
+                                        <span class="player-name">player2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="four wide column"
+                             style="justify-content: space-around;display: flex; flex-direction: column">
+                            <img class="ui image health-icon" src="assets/icons/heart.png"
+                                 style="height: 150px; align-self: center">
+                            <img class="ui image half-health-icon" src="assets/icons/bloodied.png"
+                                 style="height: 150px; align-self: center">
+                            <span class="health"
+                                  style="font-size: 6rem; padding: 1rem; justify-content: center; text-align: center">-</span>
+                        </div>
+                        <div class="five wide column"
+                             style="justify-content: space-around;display: flex; flex-direction: column">
+                            <img class="ui image action-point" src="assets/icons/action_point.png"
+                                 style="height: 150px; align-self: center">
+                            <span class="action-point-descriptor"
+                                  style="font-size: 2rem; padding: 1rem; justify-content: center; text-align: center">Punto de accion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+  let reload = false
+  setTimeout(function () {
+    if (reload)
+      window.location.reload(false)
+  }, 5000)
+</script>
+
+<script>
+
+  var PlayerController = (function () {
+    let marchersInformation = {
+      lepis: {
+        name: 'Lepis',
+        descriptor: 'Hechicera eladrin',
+        avatar: '../assets/img/marchers/avatar-lepis.png',
+        maxHp: '38'
+      },
+      dwall: {
+        name: 'Dwall',
+        descriptor: 'Guerrera enana',
+        avatar: '../assets/img/marchers/avatar-dwall.png',
+        maxHp: '52'
+      },
+      bob: {
+        name: 'Bob',
+        descriptor: 'Guerrera enana',
+        avatar: '../assets/img/marchers/avatar-dwall.png',
+        maxHp: '38'
+      },
+      notashe: {
+        name: 'No\'Tashe',
+        descriptor: 'Exploradora elfa',
+        avatar: '../assets/img/marchers/avatar-notashe.png',
+        maxHp: '38'
+      },
+      hood: {
+        name: 'Hood',
+        descriptor: 'Warlord dracónido',
+        avatar: '../assets/img/marchers/avatar-hood.png',
+        maxHp: '40'
+      },
+      balin: {
+        name: 'Balin',
+        descriptor: 'Clérigo enano',
+        avatar: '../assets/img/marchers/avatar-balin.png',
+        maxHp: '41'
+      }
+    }
+
+    let getPlayerCard = function (position) {
+      if (position === 0) {
+        return $('.player-card.left-player')
+      } else {
+        return $('.player-card.right-player')
+      }
+    }
+
+    let setPlayer = function (position, name, twitter) {
+      let $player_card
+      if (position) {
+        $player_card = $('.player-card.right-player')
+      } else {
+        $player_card = $('.player-card.left-player')
+      }
+
+      let $player_name = $player_card.find('.player-name')
+      let $twitter_logo = $player_card.find('.twitter')
+
+      if (twitter) {
+        $twitter_logo.show()
+        name = '@' + name
+      } else {
+        $twitter_logo.hide()
+      }
+
+      $player_name.text(name)
+
+    }
+
+    let setMarcher = function (position, name) {
+      let marcher
+      console.log('Settin marcher ', name, ' in position ', position)
+      if (typeof marchersInformation[name]) {
+        marcher = marchersInformation[name]
+      } else {
+        console.error('Marcher ', name, ' not found')
+        return false
+      }
+      console.log('Marcher info ', marcher)
+
+      let $player_card = getPlayerCard(position)
+
+      $player_card.find('.character-name').text(marcher.name)
+      $player_card.find('.character-descriptor').text(marcher.descriptor)
+      $player_card.data('maxHp', marcher.maxHp)
+      $player_card.data('currentHp', marcher.maxHp)
+      $player_card.find('.avatar-image').attr('src', marcher.avatar)
+      PlayerController.setPlayerHp(position, marcher.maxHp)
+      PlayerController.setPlayerAp(position, true)
+    }
+
+    let setPlayerHp = function (position, amount) {
+      let $playerCard = getPlayerCard(position)
+      $playerCard.find('.health').text(amount)
+      $playerCard.data('currentHp', amount)
+    }
+
+    let setPlayerAp = function (position, active) {
+      let $playerCard = getPlayerCard(position)
+      console.log('setPlayerAp', $playerCard, active)
+      if (active) {
+        $playerCard.find('.action-point').removeClass('spent')
+      } else {
+        $playerCard.find('.action-point').addClass('spent')
+
+      }
+    }
+
+    let updatePlayerView = function () {
+      $('.player-card').each(function (e) {
+        let $this = $(this)
+        let max_hp = $this.data('maxHp')
+        let current_hp = $this.data('currentHp')
+        console.debug('updatePlayerView: ', $this, $this.data(), max_hp, current_hp)
+
+        if (current_hp < max_hp / 2) {
+          $this.addClass('bloodied')
+        } else {
+          $this.removeClass('bloodied')
+        }
+      })
+    }
+
+    return {
+      setPlayer: setPlayer,
+      setMarcher: setMarcher,
+      setPlayerHp: setPlayerHp,
+      setPlayerAp: setPlayerAp,
+      updateView: updatePlayerView
+    }
+  })()
+
+  let Challenge1Controller = (function () {
+
+    let toggleShrine = function (shrine, activate) {
+      let $shrine
+      if (shrine === 'fire') {
+        $shrine = $('.fire.shrine')
+      } else if (shrine === 'ice') {
+        $shrine = $('.ice.shrine')
+      }
+
+      if (activate) {
+        $shrine.addClass('active')
+      } else {
+        $shrine.removeClass('active')
+      }
+    }
+
+    let setSkeletonLordMaxHealth = function (amount) {
+      let $skeleton_lord = $('.skeleton-lord')
+      $skeleton_lord.each(function (i, e) {
+        $(e).data('maxHp', amount)
+        console.debug('setSkeletonLordHealth changed: ', $(e), $(e).data())
+      })
+
+    }
+
+    let setSkeletonLordHealth = function (element, amount) {
+
+      let $skeleton_lord = $('.skeleton-lord.' + element)
+      console.debug('setSkeletonLordHealth: ', $skeleton_lord, element, amount)
+
+      $skeleton_lord.data('currentHp', amount)
+      console.debug('setSkeletonLordHealth changed: ', $skeleton_lord, $skeleton_lord.data())
+
+      updateSkeletonLordView()
+    }
+
+    let updateSkeletonLordView = function () {
+      $('.skeleton-lord').each(function (e) {
+        let $this = $(this)
+        console.debug('updateSkeletonLordView: ', $this, $this.data())
+        let max_hp = $this.data('maxHp')
+        let current_hp = $this.data('currentHp')
+
+        $this.find('.health').text(current_hp)
+        console.debug('updateSkeletonLordView: ', $this.find('.health'), current_hp)
+
+        if (current_hp < max_hp / 2) {
+          $this.addClass('bloodied')
+        } else {
+          $this.removeClass('bloodied')
+        }
+      })
+    }
+
+    let initialize = function (level) {
+      console.log('Challenge1Controller initialize: ', level, level_parameters[level])
+      parameters = level_parameters[level]
+      setSkeletonLordMaxHealth(parameters.skeleton_lord_max_hp)
+      setSkeletonLordHealth('fire', parameters.skeleton_lord_max_hp)
+      setSkeletonLordHealth('ice', parameters.skeleton_lord_max_hp)
+    }
+
+    let parameters = {}
+
+    let level_parameters = {
+      iron: {
+        skeleton_lord_max_hp: 75
+      }
+    }
+
+    let loadState = function (state) {
+      if (typeof state.fireLordHp !== 'undefined') {
+        setSkeletonLordHealth('fire', state.fireLordHp)
+      }
+      if (typeof state.iceLordHp !== 'undefined') {
+        setSkeletonLordHealth('ice', state.iceLordHp)
+      }
+      if (typeof state.fireShrineActive !== 'undefined') {
+        toggleShrine('fire', state.fireShrineActive)
+      }
+      if (typeof state.iceShrineActive !== 'undefined') {
+        toggleShrine('ice', state.iceShrineActive)
+      }
+      if (typeof state.player1Hp !== 'undefined') {
+        PlayerController.setPlayerHp(0, state.player1Hp)
+      }
+      if (typeof state.player2Hp !== 'undefined') {
+        PlayerController.setPlayerHp(1, state.player2Hp)
+      }
+      if (typeof state.player1ActionPointSpent !== 'undefined') {
+        PlayerController.setPlayerAp(0, state.player1ActionPointSpent)
+      }
+      if (typeof state.player2ActionPointSpent !== 'undefined') {
+        PlayerController.setPlayerAp(1, state.player2ActionPointSpent)
+      }
+
+      updateSkeletonLordView()
+      PlayerController.updateView()
+    }
+
+    return {
+      initialize: initialize,
+      setSkeletonLordHealth: setSkeletonLordHealth,
+      loadState: loadState,
+      toggleShrine: toggleShrine
+    }
+  })()
+
+  Challenge1Controller.initialize('iron')
+
+  PlayerController.setPlayer(0, 'xDaizu', true)
+  PlayerController.setPlayer(1, 'Josan', false)
+  PlayerController.setMarcher(0, 'lepis')
+  PlayerController.setMarcher(1, 'dwall')
+
+</script>
+</html>

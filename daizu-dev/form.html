@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="google-signin-client_id"
+          content="569837790193-dg662hms0himqt2k10i95vqc2oirgnqd.apps.googleusercontent.com">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
+    <script src="assets/jquery.serialize-object.min.js"></script>
+
+</head>
+
+<body style=" background: #ece4d8">
+<div class="ui container" style="background: #ece4d8">
+    <form id="initForm" class="ui form">
+        <h4 class="ui dividing header">Inicio</h4>
+        <div class="field">
+            <label>Player 1</label>
+            <div class="three fields">
+                <div class="field">
+                    <input type="text" name="player1Name" placeholder="Player 1 nickname">
+                </div>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="player1NameIsTwitter" tabindex="0" class="hidden">
+                    <label>Twitter</label>
+                </div>
+                <div class="field">
+                    <select class="ui fluid search dropdown" name="player1Marcher">
+                        <option value="dwall">Dwall</option>
+                        <option value="bob">Bob</option>
+                        <option value="elenwed">Elenwed</option>
+                        <option value="notashe">No'Tashe</option>
+                        <option value="lepis">Lepis</option>
+                        <option value="hood">Hood</option>
+                        <option value="balin">Balin</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Player 2</label>
+            <div class="three fields">
+                <div class="field">
+                    <input type="text" name="player2Name" placeholder="Player 1 nickname">
+                </div>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="player2NameIsTwitter" tabindex="0" class="hidden">
+                    <label>Twitter</label>
+                </div>
+
+                <div class="field">
+                    <select class="ui fluid search dropdown" name="player2Marcher">
+                        <option value="dwall">Dwall</option>
+                        <option value="bob">Bob</option>
+                        <option value="elenwed">Elenwed</option>
+                        <option value="notashe">No'Tashe</option>
+                        <option value="lepis">Lepis</option>
+                        <option value="hood">Hood</option>
+                        <option value="balin">Balin</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <button class="ui button" tabindex="0">Init</button>
+    </form>
+    <div class="ui divider"></div>
+    <form id="updateForm" class="ui form">
+        <h4 class="ui dividing header">Update</h4>
+        <div class="fields">
+            <div class="three wide inline field">
+                <label>Fire Lord HP</label>
+                <input type="number" name="fireLordHp" maxlength="16" placeholder="fireLordHp">
+            </div>
+            <div class="three wide inline field">
+                <label style="width:100%">Fire Shrine active</label>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="fireShrineActive" tabindex="0" class="hidden">
+                    <label>-</label>
+                </div>
+            </div>
+            <div class="three wide field">
+                <label>Fire Shards</label>
+                <input type="number" name="fireShard" maxlength="16" placeholder="fireShard">
+            </div>
+        </div>
+        <div class="fields">
+            <div class="three wide inline field">
+                <label>Ice Lord HP</label>
+                <input type="number" name="iceLordHp" maxlength="16" placeholder="iceLordHp">
+            </div>
+            <div class="three wide inline field">
+                <label style="width:100%">Ice Shrine active</label>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="iceShrineActive" tabindex="0" class="hidden">
+                    <label>-</label>
+                </div>
+            </div>
+            <div class="three wide field">
+                <label>Ice Shards</label>
+                <input type="number" name="iceShard" maxlength="16" placeholder="iceShard">
+            </div>
+        </div>
+        <div class="fields">
+            <div class="three wide inline field">
+                <label>Player 1 HP</label>
+                <input type="number" name="player1Hp" maxlength="16" placeholder="player1Hp">
+            </div>
+            <div class="three wide inline field">
+                <label style="width:100%">Punto de accion</label>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="player1ActionPointSpent" tabindex="0" class="hidden">
+                    <label>-</label>
+                </div>
+            </div>
+        </div>
+        <div class="fields">
+            <div class="three wide inline field">
+                <label>Player 2 HP</label>
+                <input type="number" name="player2Hp" maxlength="16" placeholder="player2Hp">
+            </div>
+            <div class="three wide inline field">
+                <label style="width:100%">Punto de accion</label>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="player2ActionPointSpent" tabindex="0" class="hidden">
+                    <label>-</label>
+                </div>
+            </div>
+        </div>
+        <button class="ui submit button" tabindex="0">Update</button>
+    </form>
+</div>
+
+</body>
+<script>
+  var reload = true
+
+  //  setTimeout(function () {
+  //    if (reload)
+  //      window.location.reload(false)
+  //  }, 5000)
+</script>
+
+<script>
+
+  $('.form').form()
+  $('.checkbox').checkbox()
+
+  $('#updateForm').on('submit', function () {
+    let $form = $(this)
+//    console.log('Update form submit', $form)
+    let data = $form.form('get values')
+    $.each(data, function (i, e) {
+      if (e === 'on') {
+        data[i] = true
+      }
+    })
+
+    console.log(data)
+    console.log(JSON.stringify(data))
+    josanAwesomeUpdateFunction(data)
+
+    return false
+  })
+
+  $('#initForm').on('submit', function () {
+    let $form = $(this)
+//    console.log('Update form submit', $form)
+    let data = $form.form('get values')
+    $.each(data, function (i, e) {
+      if (e === 'on') {
+        data[i] = true
+      }
+    })
+
+    console.log(data)
+    console.log(JSON.stringify(data))
+    josanAwesomeInitFunction(data)
+
+    return false
+  })
+
+</script>
+
+<script>
+  let josanAwesomeInitFunction = function (data) {
+//      console.error("JOSAN START SMASHING KEYBOARD!")
+  }
+  let josanAwesomeUpdateFunction = function (data) {
+//      console.error("JOSAN KEEPS SMASHING KEYBOARD!")
+  }
+</script>
+
+</html>
