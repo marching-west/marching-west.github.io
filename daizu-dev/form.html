@@ -76,7 +76,7 @@
         <div class="fields">
             <div class="three wide inline field">
                 <label>Fire Lord HP</label>
-                <input type="number" name="fireLordHp" maxlength="16" placeholder="fireLordHp">
+                <input type="number" name="fireLordHp" value="76" maxlength="16" placeholder="fireLordHp">
             </div>
             <div class="three wide inline field">
                 <label style="width:100%">Fire Shrine active</label>
@@ -93,7 +93,7 @@
         <div class="fields">
             <div class="three wide inline field">
                 <label>Ice Lord HP</label>
-                <input type="number" name="iceLordHp" maxlength="16" placeholder="iceLordHp">
+                <input type="number" name="iceLordHp" value="76" maxlength="16" placeholder="iceLordHp">
             </div>
             <div class="three wide inline field">
                 <label style="width:100%">Ice Shrine active</label>
@@ -133,7 +133,7 @@
                 </div>
             </div>
         </div>
-        <button class="ui submit button" tabindex="0">Update</button>
+        <button class="ui button" tabindex="0">Update</button>
     </form>
 </div>
 
@@ -153,12 +153,19 @@
   $('.checkbox').checkbox()
 
   $('#updateForm').on('submit', function () {
+    console.log('UPDATEFORM ON SUBMIT')
     let $form = $(this)
+    let $init_form = $('#initForm')
 //    console.log('Update form submit', $form)
     let data = $form.form('get values')
+    let init_data = $init_form.form('get values')
+    $.extend(data, init_data)
     $.each(data, function (i, e) {
       if (e === 'on') {
         data[i] = true
+      }
+      if (e === '') {
+        data[i] = undefined
       }
     })
 
@@ -190,11 +197,30 @@
 
 <script>
   let josanAwesomeInitFunction = function (data) {
-//      console.error("JOSAN START SMASHING KEYBOARD!")
+    return $.ajax({
+      url: 'https://jvo1jhiucc.execute-api.eu-west-1.amazonaws.com/v1/match',
+      data: data,
+      method: 'POST'
+    }).then(awesomeSuccessCallback, awesomeErrorCallback)
   }
   let josanAwesomeUpdateFunction = function (data) {
-//      console.error("JOSAN KEEPS SMASHING KEYBOARD!")
+    return $.ajax({
+      url: 'https://jvo1jhiucc.execute-api.eu-west-1.amazonaws.com/v1/match/last',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      method: 'PUT'
+    }).then(awesomeSuccessCallback, awesomeErrorCallback)
   }
+
+  let awesomeSuccessCallback = function (a, b, c) {
+    console.log('awesomeSuccessCallback', a, b, c)
+  }
+
+  let awesomeErrorCallback = function (a, b, c) {
+    console.log('awesomeErrorCallback', a, b, c)
+  }
+
+  function generateUUID (a) {return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, generateUUID)}
 </script>
 
 </html>

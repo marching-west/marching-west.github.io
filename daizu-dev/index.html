@@ -166,7 +166,7 @@
 
                             <div class="ui card" style="max-height: 100%">
                                 <div class="image">
-                                    <img src="../assets/img/fire.png">
+                                    <img src="../assets/images/fire.png">
                                 </div>
                                 <div class="content" style="align-self: center">
                                     <span class="header character-name">Señor de Fuego</span>
@@ -182,7 +182,7 @@
                         <div class="five wide column" style="justify-content: flex-end;display: flex;">
                             <div class="ui card" style="max-height: 100%">
                                 <div class="image">
-                                    <img src="../assets/img/ice.png">
+                                    <img src="../assets/images/ice.png">
                                 </div>
                                 <div class="content" style="align-self: center">
                                     <span class="header character-name">Señor de Hielo</span>
@@ -248,7 +248,7 @@
                                     </div>
                                 </div>
                                 <div class="image">
-                                    <img class="avatar-image" src="../assets/img/marchers/avatar-notashe.png">
+                                    <img class="avatar-image" src="../assets/images/marchers/avatar-notashe.png">
                                 </div>
                                 <div class="content">
                                     <div class="player-name-wrapper header"><i
@@ -273,7 +273,7 @@
                                     </div>
                                 </div>
                                 <div class="image">
-                                    <img class="avatar-image" src="../assets/img/marchers/avatar-lepis.png">
+                                    <img class="avatar-image" src="../assets/images/marchers/avatar-lepis.png">
                                 </div>
                                 <div class="content">
                                     <div class="player-name-wrapper header"><i
@@ -322,38 +322,44 @@
       lepis: {
         name: 'Lepis',
         descriptor: 'Hechicera eladrin',
-        avatar: '../assets/img/marchers/avatar-lepis.png',
+        avatar: '../assets/images/marchers/avatar-lepis.png',
         maxHp: '38'
       },
       dwall: {
         name: 'Dwall',
         descriptor: 'Guerrera enana',
-        avatar: '../assets/img/marchers/avatar-dwall.png',
+        avatar: '../assets/images/marchers/avatar-dwall.png',
         maxHp: '52'
       },
       bob: {
         name: 'Bob',
-        descriptor: 'Guerrera enana',
-        avatar: '../assets/img/marchers/avatar-dwall.png',
+        descriptor: 'Picaro mediano',
+        avatar: '../assets/images/marchers/avatar-bob.png',
         maxHp: '38'
       },
       notashe: {
         name: 'No\'Tashe',
         descriptor: 'Exploradora elfa',
-        avatar: '../assets/img/marchers/avatar-notashe.png',
+        avatar: '../assets/images/marchers/avatar-notashe.png',
         maxHp: '38'
       },
       hood: {
         name: 'Hood',
         descriptor: 'Warlord dracónido',
-        avatar: '../assets/img/marchers/avatar-hood.png',
+        avatar: '../assets/images/marchers/avatar-hood.png',
         maxHp: '40'
       },
       balin: {
         name: 'Balin',
         descriptor: 'Clérigo enano',
-        avatar: '../assets/img/marchers/avatar-balin.png',
+        avatar: '../assets/images/marchers/avatar-balin.png',
         maxHp: '41'
+      },
+      elenwed: {
+        name: 'Elenwed',
+        descriptor: 'Explorador elfo',
+        avatar: '../assets/images/marchers/avatar-elenwed.png',
+        maxHp: '42'
       }
     }
 
@@ -376,7 +382,7 @@
       let $player_name = $player_card.find('.player-name')
       let $twitter_logo = $player_card.find('.twitter')
 
-      if (twitter) {
+      if (twitter === true || twitter === "true") {
         $twitter_logo.show()
         name = '@' + name
       } else {
@@ -460,7 +466,7 @@
         $shrine = $('.ice.shrine')
       }
 
-      if (activate) {
+      if (activate === true || activate === "true") {
         $shrine.addClass('active')
       } else {
         $shrine.removeClass('active')
@@ -511,6 +517,8 @@
       setSkeletonLordMaxHealth(parameters.skeleton_lord_max_hp)
       setSkeletonLordHealth('fire', parameters.skeleton_lord_max_hp)
       setSkeletonLordHealth('ice', parameters.skeleton_lord_max_hp)
+      toggleShrine("fire", false)
+      toggleShrine("ice", false)
     }
 
     let parameters = {}
@@ -522,6 +530,7 @@
     }
 
     let loadState = function (state) {
+      console.log("loadState ", state)
       if (typeof state.fireLordHp !== 'undefined') {
         setSkeletonLordHealth('fire', state.fireLordHp)
       }
@@ -565,6 +574,40 @@
   PlayerController.setPlayer(1, 'Josan', false)
   PlayerController.setMarcher(0, 'lepis')
   PlayerController.setMarcher(1, 'dwall')
+
+  let matchId = null
+  let loadStateServer = function () {
+    let promise = $.ajax({
+      method: 'GET',
+      url: 'https://jvo1jhiucc.execute-api.eu-west-1.amazonaws.com/v1/match/last',
+      headers: {"Access-Control-Allow-Origin": "*"},
+    })
+    promise.then(loadStateFromServerSuccessCallback).always(function () {
+      setTimeout(loadStateServer, 1000)
+    })
+  }
+
+  let loadStateFromServerSuccessCallback = function (data,b,c) {
+    console.log(' loadStateFromServerSuccessCallback data:', data)
+    console.log(' loadStateFromServerSuccessCallback data.id:', data," match_id: ",matchId)
+    if (data.id !== matchId) {
+      //reiniciar
+      matchId = data.id
+      Challenge1Controller.initialize('iron')
+      PlayerController.setPlayer(0, data.player1Name, data.player1NameIsTwitter)
+      PlayerController.setPlayer(1, data.player2Name, data.player2NameIsTwitter)
+      PlayerController.setMarcher(0, data.player1Marcher)
+      PlayerController.setMarcher(1, data.player2Marcher)
+    } else {
+      //update
+      Challenge1Controller.loadState(data)
+    }
+  }
+  let loadStateFromServerErrorCallback = function (data) {
+    console.log('loadStateFromServerErrorCallback ', data)
+  }
+
+  loadStateServer()
 
 </script>
 </html>
